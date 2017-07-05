@@ -4,13 +4,13 @@
   Simplenote
 </h1>
 
-<p align="center"><b>This is the snap for Simplenote</b>, <i>"an all-in-one voice
-and text chat for gamers that's free, secure, and works on both your desktop
-and phone"</i>. It works on Ubuntu, Fedora, Debian, and other major Linux
-distributions.</p>
+<p align="center"><b>This is the snap for Simplenote</b>, <i>"the simplest way to keep notes."</i>. It works on Ubuntu, Fedora, Debian, and other major Linux distributions.</p>
+
+<!--
 <p align="center">
 <a href="https://build.snapcraft.io/user/snapcrafters/simplenote"><img src="https://build.snapcraft.io/badge/snapcrafters/simplenote.svg" alt="Snap Status"></a>
 </p>
+-->
 
 ## Install
 
@@ -29,7 +29,7 @@ Snapcrafters ([join us]()) are working to land snap install documentation and
 the [snapcraft.yaml](https://github.com/snapcrafters/simplenote/blob/master/snap/snapcraft.yaml)
 upstream so Simplenote can authoritatively publish future releases.
 
-  - [x] Fork the [Snapcrafters template]() repository to your own GitHub account
+  - [x] Fork the [Snapcrafters template](https://github.com/snapcrafters/fork-and-rename-me) repository to your own GitHub account
   - [x] Create a snap that runs in `devmode`
   - [x] Register the snap in the store, **using the preferred upstream name**
   - [x] Add a screenshot to this `README.md`
