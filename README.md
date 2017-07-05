@@ -30,6 +30,8 @@ the [snapcraft.yaml](https://github.com/snapcrafters/simplenote/blob/master/snap
 upstream so Simplenote can authoritatively publish future releases.
 
   - [x] Fork the [Snapcrafters template](https://github.com/snapcrafters/fork-and-rename-me) repository to your own GitHub account
+  - [x] Rename the forked Snapcrafters template repository
+  - [x] Update logos and references to `[Project]` and `[my-snap-name]`
   - [x] Create a snap that runs in `devmode`
   - [x] Register the snap in the store, **using the preferred upstream name**
   - [x] Add a screenshot to this `README.md`
@@ -47,11 +49,11 @@ upstream so Simplenote can authoritatively publish future releases.
   - [x] Post an announcement in the [Snapcraft Forum](https://forum.snapcraft.io) - [link](https://insights.ubuntu.com/2017/05/17/simplenote-gives-a-new-life-to-your-notes/)
   - [x] Submit a pull request or patch upstream that adds snap install documentation - [link](https://github.com/Automattic/simplenote-electron/pull/545)
   - [ ] Submit a pull request or patch upstream that adds the `snapcraft.yaml` and any required assets/launchers - [link]()
+  - [ ] Add upstream contact information to the `README.md`  
   - If upstream accept the PR:
     - [ ] Request upstream create a Snap store account
-    - [ ] Add upstream contact information to the `README.md`
     - [ ] Contact the Snap Advocacy team to request the snap be transferred to upstream
- - [x] Ask the Snap Advocacy team to celebrate the snap - [link](https://insights.ubuntu.com/2017/05/17/simplenote-gives-a-new-life-to-your-notes/)
+  - [x] Ask the Snap Advocacy team to celebrate the snap - [link](https://insights.ubuntu.com/2017/05/17/simplenote-gives-a-new-life-to-your-notes/)
 
 If you have any questions, [post in the Snapcraft forum](https://forum.snapcraft.io).
 
