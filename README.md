@@ -23,9 +23,7 @@
 
 ## Remaining tasks
 
-Snapcrafters ([join us]()) are working to land snap install documentation and
-the [snapcraft.yaml](https://github.com/snapcrafters/simplenote/blob/master/snap/snapcraft.yaml)
-upstream so Simplenote can authoritatively publish future releases.
+Snapcrafters ([join us](https://forum.snapcraft.io/t/join-snapcrafters/1325)) are working to land snap install documentation and the [snapcraft.yaml](https://github.com/snapcrafters/simplenote/blob/master/snap/snapcraft.yaml) upstream so Simplenote can authoritatively publish future releases.
 
   - [x] Fork the [Snapcrafters template](https://github.com/snapcrafters/fork-and-rename-me) repository to your own GitHub account
   - [x] Rename the forked Snapcrafters template repository
@@ -46,7 +44,7 @@ upstream so Simplenote can authoritatively publish future releases.
   - [x] Update the install instructions in this `README.md`
   - [x] Post an announcement in the [Snapcraft Forum](https://forum.snapcraft.io) - [link](https://insights.ubuntu.com/2017/05/17/simplenote-gives-a-new-life-to-your-notes/)
   - [x] Submit a pull request or patch upstream that adds snap install documentation - [link](https://github.com/Automattic/simplenote-electron/pull/545)
-  - [ ] Submit a pull request or patch upstream that adds the `snapcraft.yaml` and any required assets/launchers - [link]()
+  - [ ] Submit a pull request or patch upstream that adds the `snapcraft.yaml` and any required assets/launchers - discussion via email
   - [ ] Add upstream contact information to the `README.md`  
   - If upstream accept the PR:
     - [ ] Request upstream create a Snap store account
