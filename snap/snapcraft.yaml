@@ -1,5 +1,5 @@
 name: simplenote
-version: v1.0.8
+version: v1.1.0
 summary: The simplest way to keep notes.
 description: |
  Simplenote is an easy way to keep notes, lists, ideas and more. Your
@@ -11,7 +11,7 @@ confinement: strict
 parts:
   simplenote:
     plugin: dump
-    source: https://github.com/Automattic/simplenote-electron/releases/download/v1.0.8/simplenote-1.0.8.deb
+    source: https://github.com/Automattic/simplenote-electron/releases/download/v1.1.0/simplenote-1.1.0.deb
     source-type: deb
     # Correct path to icon.
     prepare: |
@@ -42,4 +42,6 @@ apps:
       - network
       - pulseaudio
       - unity7
-      - x11
+      - wayland
+      - desktop
+      - desktop-legacy
