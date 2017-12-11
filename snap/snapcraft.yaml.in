@@ -30,16 +30,20 @@ parts:
 
 apps:
   simplenote:
-    # Correct the TMPDIR path for Chromium Framework/Electron to
-    # ensure libappindicator has readable resources.
-    command: env TMPDIR=$XDG_RUNTIME_DIR PATH=/usr/local/bin:${PATH} ${SNAP}/bin/desktop-launch $SNAP/usr/share/simplenote/simplenote
+    command: bin/desktop-launch $SNAP/usr/share/simplenote/simplenote
     desktop: usr/share/applications/simplenote.desktop
+    # Correct the TMPDIR path for Chromium Framework/Electron to ensure
+    # libappindicator has readable resources.
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
     plugs:
       - browser-support
+      - desktop
+      - desktop-legacy
       - gsettings
       - home
       - mount-observe
       - network
       - pulseaudio
       - unity7
-      - x11
+      - wayland

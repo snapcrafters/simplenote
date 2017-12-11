@@ -11,7 +11,7 @@ confinement: strict
 parts:
   simplenote:
     plugin: dump
-    source: https://github.com/Automattic/simplenote-electron/releases/download/v1.1.0/simplenote-1.1.0.deb
+    source: https://github.com/Automattic/simplenote-electron/releases/download/v1.1.0/Simplenote-linux-1.1.0.deb
     source-type: deb
     # Correct path to icon.
     prepare: |
@@ -30,12 +30,16 @@ parts:
 
 apps:
   simplenote:
-    # Correct the TMPDIR path for Chromium Framework/Electron to
-    # ensure libappindicator has readable resources.
-    command: env TMPDIR=$XDG_RUNTIME_DIR PATH=/usr/local/bin:${PATH} ${SNAP}/bin/desktop-launch $SNAP/usr/share/simplenote/simplenote
+    command: bin/desktop-launch $SNAP/usr/share/simplenote/simplenote
     desktop: usr/share/applications/simplenote.desktop
+    # Correct the TMPDIR path for Chromium Framework/Electron to ensure
+    # libappindicator has readable resources.
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
     plugs:
       - browser-support
+      - desktop
+      - desktop-legacy
       - gsettings
       - home
       - mount-observe
@@ -43,5 +47,3 @@ apps:
       - pulseaudio
       - unity7
       - wayland
-      - desktop
-      - desktop-legacy
