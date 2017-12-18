@@ -42,6 +42,7 @@ apps:
       - home
       - mount-observe
       - network
+      - opengl
       - pulseaudio
       - unity7
       - wayland
