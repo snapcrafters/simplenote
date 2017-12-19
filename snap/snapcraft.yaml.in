@@ -14,8 +14,13 @@ parts:
     source: UUU
     source-type: deb
     # Correct path to icon.
+    # Clear the execstack
+    # https://forum.snapcraft.io/t/snap-and-executable-stacks/1812
+    build-packages:
+      - execstack
     prepare: |
       sed -i 's|Icon=simplenote|Icon=/usr/share/pixmaps/simplenote\.png|' usr/share/applications/simplenote.desktop
+      execstack --clear-execstack usr/share/simplenote/simplenote
     after:
       - desktop-gtk2
     stage-packages:
