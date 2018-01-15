@@ -43,6 +43,7 @@ apps:
       TMPDIR: $XDG_RUNTIME_DIR
     plugs:
       - browser-support
+      - desktop
       - gsettings
       - home
       - mount-observe
