@@ -12,8 +12,7 @@
 
 ## Install
 
-    sudo apt install snapd-xdg-open
-    sudo snap install simplenote
+    snap install simplenote
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
@@ -39,13 +38,13 @@ Snapcrafters ([join us](https://forum.snapcraft.io/t/join-snapcrafters/1325)) ar
   - [x] Update the install instructions in this `README.md`
   - [x] Post a call for testing on the [Snapcraft Forum](https://forum.snapcraft.io) - [link](http://www.omgubuntu.co.uk/2017/05/simplenote-linux-app-snap)
   - [x] Request your GitHub repository is forked to the Snapcrafters organisation and configured for automated builds
-  - [ ] Add the provided Snapcraft build badge to this `README.md`
+  - [x] Add the provided Snapcraft build badge to this `README.md`
   - [x] Publish the snap in the Snap store stable channel
   - [x] Update the install instructions in this `README.md`
   - [x] Post an announcement in the [Snapcraft Forum](https://forum.snapcraft.io) - [link](https://insights.ubuntu.com/2017/05/17/simplenote-gives-a-new-life-to-your-notes/)
   - [x] Submit a pull request or patch upstream that adds snap install documentation - [link](https://github.com/Automattic/simplenote-electron/pull/545)
-  - [ ] Submit a pull request or patch upstream that adds the `snapcraft.yaml` and any required assets/launchers - discussion via email
-  - [ ] Add upstream contact information to the `README.md`  
+  - [-] Submit a pull request or patch upstream that adds the `snapcraft.yaml` and any required assets/launchers
+  - [-] Add upstream contact information to the `README.md`
   - If upstream accept the PR:
     - [ ] Request upstream create a Snap store account
     - [ ] Contact the Snap Advocacy team to request the snap be transferred to upstream
