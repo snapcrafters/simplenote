@@ -1,5 +1,6 @@
 name: simplenote
-version: v1.1.3
+version: latest
+version-script: cat $SNAPCRAFT_STAGE/version
 summary: The simplest way to keep notes.
 description: |
  Simplenote is an easy way to keep notes, lists, ideas and more. Your
@@ -10,13 +11,34 @@ confinement: strict
 
 parts:
   simplenote:
-    plugin: dump
-    source: https://github.com/Automattic/simplenote-electron/releases/download/v1.1.3/Simplenote-linux-1.1.3.deb
-    source-type: deb
-    prepare: |
-      sed -i 's|Icon=simplenote|Icon=/usr/share/pixmaps/simplenote\.png|' usr/share/applications/simplenote.desktop
+    plugin: nil
+    override-build: |
+      snapcraftctl build
+      # Get the latest releases json
+      echo "Get GitHub releases..."
+      wget --quiet https://api.github.com/repos/Automattic/simplenote-electron/releases/latest -O releases.json
+      # Get the version from the tag_name and the download URL.
+      VERSION=$(jq . releases.json | grep tag_name | cut -d'"' -f4 | sed s'/v//')
+      DEB_URL=$(cat releases.json | jq -r ".assets[] | select(.name | test(\"deb\")) | .browser_download_url")
+      DEB=$(basename "${DEB_URL}")
+      echo "Downloading ${DEB_URL}..."
+      wget --quiet "${DEB_URL}" -O "${SNAPCRAFT_PART_INSTALL}/${DEB}"
+      echo "Unpacking ${DEB}..."
+      dpkg -x "${SNAPCRAFT_PART_INSTALL}/${DEB}" ${SNAPCRAFT_PART_INSTALL}
+      rm -f releases.json 2>/dev/null
+      rm -f "${SNAPCRAFT_PART_INSTALL}/${DEB}" 2>/dev/null
+      echo $VERSION > $SNAPCRAFT_STAGE/version
+      sed -i 's|Icon=simplenote|Icon=/usr/share/icons/hicolor/256x256/apps/simplenote\.png|' ${SNAPCRAFT_PART_INSTALL}/usr/share/applications/simplenote.desktop
     after:
       - desktop-gtk2
+    build-packages:
+      # Simplenote debs are only available for amd64.
+      # Fail builds on other architectures
+      - on amd64:
+        - dpkg
+        - jq
+        - wget
+      - else fail
     stage-packages:
       - libasound2
       - libgconf2-4
@@ -38,6 +60,7 @@ apps:
     plugs:
       - browser-support
       - desktop
+      - desktop-legacy
       - gsettings
       - home
       - mount-observe
