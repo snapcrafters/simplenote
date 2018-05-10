@@ -51,7 +51,7 @@ parts:
 
 apps:
   simplenote:
-    command: bin/desktop-launch $SNAP/usr/share/simplenote/simplenote
+    command: bin/desktop-launch $SNAP/opt/Simplenote/simplenote
     desktop: usr/share/applications/simplenote.desktop
     # Correct the TMPDIR path for Chromium Framework/Electron to ensure
     # libappindicator has readable resources.
