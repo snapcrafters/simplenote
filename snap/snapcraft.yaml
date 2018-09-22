@@ -1,10 +1,9 @@
 name: simplenote
-version: latest
-version-script: cat $SNAPCRAFT_STAGE/version
 summary: The simplest way to keep notes.
 description: |
  Simplenote is an easy way to keep notes, lists, ideas and more. Your
  notes stay in sync with all of your devices for free.
+adopt-info: simplenote
 
 grade: stable
 confinement: strict
@@ -13,6 +12,7 @@ parts:
   simplenote:
     plugin: nil
     override-build: |
+      set -x
       snapcraftctl build
       # Get the latest releases json
       echo "Get GitHub releases..."
@@ -27,7 +27,7 @@ parts:
       dpkg -x "${SNAPCRAFT_PART_INSTALL}/${DEB}" ${SNAPCRAFT_PART_INSTALL}
       rm -f releases.json 2>/dev/null
       rm -f "${SNAPCRAFT_PART_INSTALL}/${DEB}" 2>/dev/null
-      echo $VERSION > $SNAPCRAFT_STAGE/version
+      snapcraftctl set-version "$VERSION"
       sed -i 's|Icon=simplenote|Icon=/usr/share/icons/hicolor/256x256/apps/simplenote\.png|' ${SNAPCRAFT_PART_INSTALL}/usr/share/applications/simplenote.desktop
     after:
       - desktop-gtk2
