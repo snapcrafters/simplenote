@@ -34,7 +34,7 @@ parts:
       snapcraftctl set-version "$VERSION"
       sed -i 's|Icon=simplenote|Icon=/usr/share/icons/hicolor/256x256/apps/simplenote\.png|' ${SNAPCRAFT_PART_INSTALL}/usr/share/applications/simplenote.desktop
     after:
-      - desktop-gtk2
+      - desktop-gtk3
     build-packages:
       - dpkg
       - jq
