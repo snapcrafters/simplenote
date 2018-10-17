@@ -5,6 +5,10 @@ description: |
  notes stay in sync with all of your devices for free.
 adopt-info: simplenote
 
+architectures:
+  - build-on: amd64
+  - build-on: i386
+
 grade: stable
 confinement: strict
 
@@ -32,13 +36,9 @@ parts:
     after:
       - desktop-gtk2
     build-packages:
-      # Simplenote debs are only available for amd64.
-      # Fail builds on other architectures
-      - on amd64:
-        - dpkg
-        - jq
-        - wget
-      - else fail
+      - dpkg
+      - jq
+      - wget
     stage-packages:
       - libasound2
       - libgconf2-4
