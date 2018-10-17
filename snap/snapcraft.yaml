@@ -5,6 +5,10 @@ description: |
  notes stay in sync with all of your devices for free.
 adopt-info: simplenote
 
+architectures:
+  - build-on: amd64
+  - build-on: i386
+
 grade: stable
 confinement: strict
 
@@ -19,7 +23,7 @@ parts:
       wget --quiet https://api.github.com/repos/Automattic/simplenote-electron/releases/latest -O releases.json
       # Get the version from the tag_name and the download URL.
       VERSION=$(jq . releases.json | grep tag_name | cut -d'"' -f4 | sed s'/v//')
-      DEB_URL=$(cat releases.json | jq -r ".assets[] | select(.name | test(\"deb\")) | .browser_download_url")
+      DEB_URL=$(cat releases.json | jq -r ".assets[] | select(.name | test(\"deb\")) | .browser_download_url"| grep $(dpkg --print-architecture))
       DEB=$(basename "${DEB_URL}")
       echo "Downloading ${DEB_URL}..."
       wget --quiet "${DEB_URL}" -O "${SNAPCRAFT_PART_INSTALL}/${DEB}"
@@ -32,13 +36,9 @@ parts:
     after:
       - desktop-gtk2
     build-packages:
-      # Simplenote debs are only available for amd64.
-      # Fail builds on other architectures
-      - on amd64:
-        - dpkg
-        - jq
-        - wget
-      - else fail
+      - dpkg
+      - jq
+      - wget
     stage-packages:
       - libasound2
       - libgconf2-4
