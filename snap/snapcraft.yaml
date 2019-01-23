@@ -57,6 +57,7 @@ apps:
     # libappindicator has readable resources.
     environment:
       TMPDIR: $XDG_RUNTIME_DIR
+      DISABLE_WAYLAND: 1
     plugs:
       - browser-support
       - desktop
