@@ -1,9 +1,9 @@
 name: simplenote
+adopt-info: simplenote
 summary: The simplest way to keep notes.
 description: |
  Simplenote is an easy way to keep notes, lists, ideas and more. Your
  notes stay in sync with all of your devices for free.
-adopt-info: simplenote
 
 architectures:
   - build-on: amd64
@@ -12,7 +12,45 @@ architectures:
 grade: stable
 confinement: strict
 
+plugs:
+  gnome-3-26-1604:
+    interface: content
+    target: $SNAP/gnome-platform
+    default-provider: gnome-3-26-1604
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/data-dir/themes
+    default-provider: gtk-common-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/data-dir/sounds
+    default-provider: gtk-common-themes
+
 parts:
+  gnome:
+    plugin: nil
+    override-pull: |
+      add-apt-repository -y ppa:ubuntu-desktop/gnome-3-26
+      apt -y update
+      apt -y upgrade
+
+  libappindicator:
+    plugin: nil
+    after:
+      - gnome
+    stage-packages:
+      - libappindicator3-1
+    build-attributes:
+      - no-system-libraries
+    prime:
+      - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libdbusmenu*.so*
+      - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libappindicator*.so*
+      - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libindicator*.so*
+
   simplenote:
     plugin: nil
     override-build: |
@@ -34,7 +72,9 @@ parts:
       snapcraftctl set-version "$VERSION"
       sed -i 's|Icon=simplenote|Icon=/usr/share/icons/hicolor/256x256/apps/simplenote\.png|' ${SNAPCRAFT_PART_INSTALL}/usr/share/applications/simplenote.desktop
     after:
-      - desktop-gtk3
+      - gnome
+      - desktop-gnome-platform
+      - libappindicator
     build-packages:
       - dpkg
       - jq
@@ -42,10 +82,8 @@ parts:
     stage-packages:
       - libasound2
       - libgconf2-4
-      - libnotify4
       - libnspr4
       - libnss3
-      - libpulse0
       - libxss1
       - libxtst6
 
@@ -53,10 +91,15 @@ apps:
   simplenote:
     command: bin/desktop-launch $SNAP/opt/Simplenote/simplenote
     desktop: usr/share/applications/simplenote.desktop
-    # Correct the TMPDIR path for Chromium Framework/Electron to ensure
-    # libappindicator has readable resources.
     environment:
+      # Correct the TMPDIR path for Chromium Framework/Electron to
+      # ensure libappindicator has readable resources
       TMPDIR: $XDG_RUNTIME_DIR
+      # Coerce XDG_CURRENT_DESKTOP to Unity so that App Indicators
+      # are used and do not fall back to Notification Area applets
+      # or disappear completely.
+      XDG_CURRENT_DESKTOP: Unity
+      # Fallback to XWayland if running in a Wayland session.
       DISABLE_WAYLAND: 1
     plugs:
       - browser-support
