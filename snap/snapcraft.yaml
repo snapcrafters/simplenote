@@ -60,6 +60,7 @@ apps:
       DISABLE_WAYLAND: 1
     plugs:
       - browser-support
+      - cups-control
       - desktop
       - desktop-legacy
       - gsettings
