@@ -75,6 +75,8 @@ parts:
       - gnome
       - desktop-gnome-platform
       - libappindicator
+    build-attributes:
+      - no-system-libraries
     build-packages:
       - dpkg
       - jq
@@ -85,7 +87,6 @@ parts:
       - libnspr4
       - libnss3
       - libxss1
-      - libxtst6
 
 apps:
   simplenote:
