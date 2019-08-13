@@ -32,6 +32,13 @@ plugs:
     default-provider: gtk-common-themes
 
 parts:
+  desktop-gnome-platform:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: gtk
+    plugin: make
+    make-parameters: ["FLAVOR=gtk3"]
+    build-packages:
+      - libgtk-3-dev
   libappindicator:
     plugin: nil
     stage-packages:
