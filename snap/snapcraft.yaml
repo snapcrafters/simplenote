@@ -36,8 +36,6 @@ parts:
     plugin: nil
     stage-packages:
       - libappindicator3-1
-    build-attributes:
-      - no-system-libraries
     prime:
       - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libdbusmenu*.so*
       - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libappindicator*.so*
@@ -66,8 +64,6 @@ parts:
     after:
       - desktop-gnome-platform
       - libappindicator
-    build-attributes:
-      - no-system-libraries
     build-packages:
       - dpkg
       - jq
