@@ -1,5 +1,6 @@
 name: simplenote
 adopt-info: simplenote
+base: core18
 summary: The simplest way to keep notes.
 description: |
  Simplenote is an easy way to keep notes, lists, ideas and more. Your
@@ -13,10 +14,10 @@ grade: stable
 confinement: strict
 
 plugs:
-  gnome-3-26-1604:
+  gnome-3-28-1804:
     interface: content
     target: $SNAP/gnome-platform
-    default-provider: gnome-3-26-1604
+    default-provider: gnome-3-28-1804
   gtk-3-themes:
     interface: content
     target: $SNAP/data-dir/themes
@@ -31,19 +32,8 @@ plugs:
     default-provider: gtk-common-themes
 
 parts:
-  gnome:
-    plugin: nil
-    build-packages:
-      - software-properties-common
-    override-pull: |
-      add-apt-repository -y ppa:ubuntu-desktop/gnome-3-26
-      apt -y update
-      apt -y upgrade
-
   libappindicator:
     plugin: nil
-    after:
-      - gnome
     stage-packages:
       - libappindicator3-1
     build-attributes:
@@ -74,7 +64,6 @@ parts:
       snapcraftctl set-version "$VERSION"
       sed -i 's|Icon=simplenote|Icon=/usr/share/icons/hicolor/256x256/apps/simplenote\.png|' ${SNAPCRAFT_PART_INSTALL}/usr/share/applications/simplenote.desktop
     after:
-      - gnome
       - desktop-gnome-platform
       - libappindicator
     build-attributes:
