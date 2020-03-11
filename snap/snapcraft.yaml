@@ -69,13 +69,12 @@ parts:
       dpkg -x "${SNAPCRAFT_PART_INSTALL}/${DEB}" ${SNAPCRAFT_PART_INSTALL}
       rm -f releases.json 2>/dev/null
       rm -f "${SNAPCRAFT_PART_INSTALL}/${DEB}" 2>/dev/null
+      rm -f "${SNAPCRAFT_PART_INSTALL}/opt/Simplenote/chrome-sandbox" 2>/dev/null
       snapcraftctl set-version "$VERSION"
       sed -i 's|Icon=simplenote|Icon=/usr/share/icons/hicolor/256x256/apps/simplenote\.png|' ${SNAPCRAFT_PART_INSTALL}/usr/share/applications/simplenote.desktop
     after:
       - desktop-gnome-platform
       - libappindicator
-    prime:
-      - -opt/Simplenote/chrome-sandbox
     build-packages:
       - dpkg
       - jq
