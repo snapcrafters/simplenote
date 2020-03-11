@@ -74,6 +74,8 @@ parts:
     after:
       - desktop-gnome-platform
       - libappindicator
+    prime:
+      - -opt/Simplenote/chrome-sandbox
     build-packages:
       - dpkg
       - jq
@@ -87,7 +89,7 @@ parts:
 
 apps:
   simplenote:
-    command: bin/desktop-launch $SNAP/opt/Simplenote/simplenote
+    command: bin/desktop-launch $SNAP/opt/Simplenote/simplenote --no-sandbox
     desktop: usr/share/applications/simplenote.desktop
     environment:
       # Correct the TMPDIR path for Chromium Framework/Electron to
