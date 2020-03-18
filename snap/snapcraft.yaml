@@ -77,14 +77,9 @@ apps:
     plugs:
       - browser-support
       - cups-control
-      - desktop
-      - desktop-legacy
-      - gsettings
       - home
-      - mount-observe
       - network
       - opengl
       - pulseaudio
+      - removable-media
       - unity7
-      - wayland
-      - x11
