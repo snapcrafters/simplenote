@@ -9,6 +9,7 @@ description: |
 architectures:
   - build-on: amd64
   - build-on: i386
+compression: lzo
 
 grade: stable
 confinement: strict
