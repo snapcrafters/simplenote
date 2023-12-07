@@ -8,7 +8,7 @@ description: |
 
 architectures:
   - build-on: amd64
-  - build-on: arm64
+
 compression: lzo
 
 grade: stable
@@ -18,7 +18,6 @@ parts:
   simplenote:
     source: 
       - on amd64: https://github.com/Automattic/simplenote-electron/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/Simplenote-linux-${SNAPCRAFT_PROJECT_VERSION}-x64.tar.gz
-      - on arm64: https://github.com/Automattic/simplenote-electron/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/Simplenote-linux-${SNAPCRAFT_PROJECT_VERSION}-arm64.tar.gz
     plugin: dump
     prime:
       - -chrome-sandbox
