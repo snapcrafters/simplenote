@@ -1,6 +1,6 @@
 name: simplenote
-adopt-info: simplenote
-base: core18
+version: "2.21.0"
+base: core22
 summary: The simplest way to keep notes.
 description: |
  Simplenote is an easy way to keep notes, lists, ideas and more. Your
@@ -8,87 +8,40 @@ description: |
 
 architectures:
   - build-on: amd64
-  - build-on: i386
+
 compression: lzo
 
 grade: stable
 confinement: strict
 
 parts:
-  bsi-trigger: # A non-built part, only used to trigger builds in build.snapcraft.io on upstream changes
-    plugin: nil
-    source: https://github.com/Automattic/simplenote-electron.git
-
-  libappindicator:
-    plugin: nil
-    stage-packages:
-      - libappindicator3-1
-    prime:
-      - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libdbusmenu*.so*
-      - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libappindicator*.so*
-      - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libindicator*.so*
-
   simplenote:
-    after: [libappindicator]
-    plugin: nil
-    override-build: |
-      set -x
-      snapcraftctl build
-      # Get the latest releases json
-      echo "Get GitHub releases..."
-      wget --quiet https://api.github.com/repos/Automattic/simplenote-electron/releases/latest -O releases.json
-      # Get the version from the tag_name and the download URL.
-      VERSION=$(jq . releases.json | grep tag_name | cut -d'"' -f4 | sed s'/v//')
-      DEB_URL=$(cat releases.json | jq -r ".assets[] | select(.name | test(\"deb\")) | .browser_download_url"| grep $(dpkg --print-architecture))
-      DEB=$(basename "${DEB_URL}")
-      echo "Downloading ${DEB_URL}..."
-      wget --quiet "${DEB_URL}" -O "${SNAPCRAFT_PART_INSTALL}/${DEB}"
-      echo "Unpacking ${DEB}..."
-      dpkg -x "${SNAPCRAFT_PART_INSTALL}/${DEB}" ${SNAPCRAFT_PART_INSTALL}
-      rm -f releases.json 2>/dev/null
-      rm -f "${SNAPCRAFT_PART_INSTALL}/${DEB}" 2>/dev/null
-      rm -f "${SNAPCRAFT_PART_INSTALL}/opt/Simplenote/chrome-sandbox" 2>/dev/null
-      snapcraftctl set-version "$VERSION"
-      sed -i 's|Icon=simplenote|Icon=/usr/share/icons/hicolor/256x256/apps/simplenote\.png|' ${SNAPCRAFT_PART_INSTALL}/usr/share/applications/simplenote.desktop
-    build-packages:
-      - dpkg
-      - jq
-      - wget
-    stage-packages:
-      - libgconf2-4
-      - libnspr4
-      - libnss3
-      - libxss1
-  cleanup:
-    after: [simplenote]
-    plugin: nil
-    build-snaps: [ gnome-3-28-1804 ]
-    override-prime: |
-        set -eux
-        cd /snap/gnome-3-28-1804/current
-        find . -type f,l -exec rm -f $SNAPCRAFT_PRIME/{} \;
+    source: 
+      - on amd64: https://github.com/Automattic/simplenote-electron/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/Simplenote-linux-${SNAPCRAFT_PROJECT_VERSION}-x64.tar.gz
+    plugin: dump
+    prime:
+      - -chrome-sandbox
+      - -LICENSE*
+
+plugs:
+  shmem:
+    interface: shared-memory
+    private: true
 
 apps:
   simplenote:
-    command: opt/Simplenote/simplenote --no-sandbox
-    desktop: usr/share/applications/simplenote.desktop
-    extensions: [gnome-3-28]
+    command: simplenote --no-sandbox
+    desktop: meta/gui/simplenote.desktop
+    extensions: [ gnome ]
     environment:
       # Correct the TMPDIR path for Chromium Framework/Electron to
       # ensure libappindicator has readable resources
       TMPDIR: $XDG_RUNTIME_DIR
-      # Coerce XDG_CURRENT_DESKTOP to Unity so that App Indicators
-      # are used and do not fall back to Notification Area applets
-      # or disappear completely.
-      XDG_CURRENT_DESKTOP: Unity
       # Fallback to XWayland if running in a Wayland session.
       DISABLE_WAYLAND: 1
     plugs:
-      - browser-support
       - cups-control
       - home
       - network
-      - opengl
-      - pulseaudio
       - removable-media
       - unity7
