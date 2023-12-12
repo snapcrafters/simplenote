@@ -20,8 +20,6 @@
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
-![Simplenote](screenshot.png?raw=true "Simplenote")
-
 <p align="center">Published for <img src="http://anything.codes/slack-emoji-for-techies/emoji/tux.png" align="top" width="24" /> with :gift_heart: by Snapcrafters</p>
 
 ## How to contribute to this snap
