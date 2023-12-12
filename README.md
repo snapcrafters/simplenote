@@ -78,9 +78,9 @@ Now that your git metadata has been updated you are ready to create a bugfix bra
 
 ## Maintainers
 
-- [@merlijn-sebrechts](https://github.com/merlijn-sebrechts/)
-- [Martin Wimpress](https://github.com/flexiondotorg/)
+This snap doesn't have a maintainer yet! If you're interested, please contact us by creating a thread in the Snapcrafters category on the forum
 
 ## License
+
 The license of both the build files in this repository and Simplenote itself is the [MIT License](https://github.com/snapcrafters/simplenote?tab=MIT-1-ov-file#readme)
 
