@@ -1,5 +1,5 @@
 name: simplenote
-version: "2.21.0"
+version: '2.21.0'
 base: core22
 summary: The simplest way to keep notes.
 description: |
