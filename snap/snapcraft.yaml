@@ -1,18 +1,26 @@
 name: simplenote
-version: '2.21.0'
-base: core22
+title: Simplenote
 summary: The simplest way to keep notes.
 description: |
  Simplenote is an easy way to keep notes, lists, ideas and more. Your
  notes stay in sync with all of your devices for free.
+version: '2.22.2'
+license: MIT
+website: https://simplenote.com/
+source-code: https://github.com/Automattic/simplenote-electron/
+contact: https://github.com/snapcrafters/simplenote
+issues: https://github.com/snapcrafters/simplenote/issues
+icon: snap/gui/simplenote.png
 
-architectures:
-  - build-on: amd64
-
+base: core24
 compression: lzo
-
 grade: stable
 confinement: strict
+
+platforms:
+  amd64:
+    build-on: [amd64]
+    build-for: [amd64]
 
 parts:
   simplenote:

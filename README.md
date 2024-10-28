@@ -78,7 +78,7 @@ Now that your git metadata has been updated you are ready to create a bugfix bra
 
 ## Maintainers
 
-This snap doesn't have a maintainer yet! If you're interested, please contact us by creating a thread in the Snapcrafters category on the forum
+- [@kz6fittycent](https://github.com/kz6fittycent)
 
 ## License
 
