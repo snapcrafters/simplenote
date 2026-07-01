@@ -4,7 +4,7 @@ summary: The simplest way to keep notes.
 description: |
  Simplenote is an easy way to keep notes, lists, ideas and more. Your
  notes stay in sync with all of your devices for free.
-version: '2.26.1'
+version: '2.27.1'
 license: MIT
 website: https://simplenote.com/
 source-code: https://github.com/Automattic/simplenote-electron/
